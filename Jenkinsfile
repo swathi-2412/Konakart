@@ -51,3 +51,10 @@ node {
 	        
 	    }
 }
+node {
+    checkout scm
+    def customImage = docker.build("konakart-jdk:${env.BUILD_ID}")
+    customImage.push()
+
+    customImage.push('latest')
+}
