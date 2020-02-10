@@ -52,9 +52,28 @@ node {
 	    }
 }
 node {
-    checkout scm
-    def customImage = docker.build("konakart-jdk:${env.BUILD_ID}")
-    customImage.push()
+    def app
+	 stage('Build image') {
+        /* This builds the actual image */
 
-    customImage.push('latest')
+        app = docker.build("chiducaff/build_pipeline")
+    }
+
+    stage('Test image') {
+        
+        app.inside {
+            echo "Tests passed"
+        }
+    }
+
+    stage('Push image') {
+        /* 
+			You would need to first register with DockerHub before you can push images to your account
+		*/
+        docker.withRegistry('https://registry.hub.docker.com', 'Docker') {
+            app.push("${env.BUILD_NUMBER}")
+            app.push("latest")
+            } 
+                echo "Trying to Push Docker Build to DockerHub"
+    }
 }
