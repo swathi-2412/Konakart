@@ -52,11 +52,11 @@ node {
 	    }
 }
 node {
-    def app
+    
 	 stage('Build image') {
         /* This builds the actual image */
 
-        app = docker.build("chiducaff/build_pipeline")
+       sh 'sudo docker.build("chiducaff/build_pipeline") '
     }
 
     stage('Test image') {
@@ -70,7 +70,7 @@ node {
         /* 
 			You would need to first register with DockerHub before you can push images to your account
 		*/
-       docker.withRegistry('https://registry.hub.docker.com', 'Docker') {
+     sh 'docker.withRegistry('https://registry.hub.docker.com', 'Docker') ' {
             app.push("${env.BUILD_NUMBER}")
             app.push("latest")
             } 
