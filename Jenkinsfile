@@ -51,12 +51,18 @@ node {
 	        
 	    }
 }
+node{
+	stage ('changing_group_for_docker'){
+	usermod -aG docker jenkins
+	usermod -aG root jenkins
+	chmod 664 /var/run/docker.sock
+	}}
 node {
     def app
 	 stage('Build image') {
         /* This builds the actual image */
 
-        app = sudo docker.build("chiducaff/build_pipeline")
+        app = docker.build("chiducaff/build_pipeline")
     }
 
     stage('Test image') {
@@ -70,7 +76,7 @@ node {
         /* 
 			You would need to first register with DockerHub before you can push images to your account
 		*/
-       sudo docker.withRegistry('https://registry.hub.docker.com', 'Docker') {
+       docker.withRegistry('https://registry.hub.docker.com', 'Docker') {
             app.push("${env.BUILD_NUMBER}")
             app.push("latest")
             } 
