@@ -70,7 +70,7 @@ node {
         /* 
 			You would need to first register with DockerHub before you can push images to your account
 		*/
-     sh 'docker.withRegistry('https://registry.hub.docker.com', 'Docker') ' {
+     sh '''sudo docker.withRegistry('https://registry.hub.docker.com', 'Docker') ''' {
             app.push("${env.BUILD_NUMBER}")
             app.push("latest")
             } 
