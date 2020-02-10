@@ -51,12 +51,6 @@ node {
 	        
 	    }
 }
-node{
-	stage ('changing_group_for_docker'){
-	usermod -aG docker jenkins
-	usermod -aG root jenkins
-	chmod 664 /var/run/docker.sock
-	}}
 node {
     def app
 	 stage('Build image') {
