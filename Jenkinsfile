@@ -1,19 +1,26 @@
-node {
-     
+pipeline{
+	agent any
+	 environment {
+    registry = "chiducaff/build_pipeline"
+    registryCredential = 'dockerhub'
+    dockerImage = ''
+  }
+	stages{
       stage ('Build')
       {
-         
+	      steps{
              sh "mvn -Dmaven.test.failure.ignore=true clean package" 
           
-      }
+	      }}
       stage ('Code Coverage'){
+	      steps{
          
               sh "mvn sonar:sonar"
           
-      }
+	      }}
       stage ('Upload_Artifact')
       {
-         
+	      steps{
               rtUpload (
                   serverId: "arti",
 			spec:       
@@ -26,10 +33,10 @@ node {
 			]        
 		    }""")
           
-      }
+	      }}
       stage('Download_Artifact')
         {    
-           
+		steps{
 		    rtDownload (
 			serverId: "arti",  
 			spec:
@@ -42,21 +49,28 @@ node {
 			]
 			}"""
 		    )
-	    }
+		}}
 	    stage ('Deploy_To_Tomcat')
 	    {
-	      
+		    steps{
 	             sh '''cp -R "/var/lib/jenkins/workspace/konakart.war" "/opt/tomcat/apache-tomcat-9.0.30/webapps"
            '''
 	        
-	    }
-}
-node {
+		    }}
     
 	 stage('Build image') {
-        /* This builds the actual image */
-
+	 steps{
+       
        sh '''sudo docker build -t java:jdk -f Dockerfile . '''
-    }
-
+    }}
+stage('Push image') {
+steps{
+    script{
+   docker.withRegistry( '', registryCredential ) 
+    {
+          //dockerImage.push()
+        
+          sh ''' sudo docker push chiducaff/build_pipeline:jdk'''
+}}
 }
+}}}
