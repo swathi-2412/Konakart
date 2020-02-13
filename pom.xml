@@ -26,12 +26,18 @@
 		</dependency>
 		 -->
 		 <distributionManagement>
-            <snapshotRepository>
+			 <repository>
+        <id>central</id>
+        <name>df7d982d4b33-releases</name>
+        <url>http://192.168.175.222:8081/artifactory/KonakartM_Maven_App</url>
+    </repository>
+       </distributionManagement>
+			 <!--<snapshotRepository>
               <id>Konakart</id>
              <url>http://192.168.175.193:8085/repository/Konakart/</url>
             </snapshotRepository>
-        </distributionManagement>
-       <!--<distributionManagement>
+        
+       <distributionManagement>
             <snapshotRepository>
               <id>test2</id>
              <url>http://192.168.175.170:8086/artifactory/test2</url>
