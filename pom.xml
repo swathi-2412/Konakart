@@ -14,7 +14,7 @@
         <name>df7d982d4b33-releases</name>
         <url>http://192.168.175.222:8081/artifactory/KonakartM_Maven_App</url>
     </repository>
-      
+      </distributionManagement>
 		
 		 <dependencies>
 		<dependency>
