@@ -7,48 +7,14 @@
 	<version>1.0.3-SNAPSHOT</version>
 	<name>KonakartM Maven Webapp</name>
 	<url>http://maven.apache.org</url>
-	<!-- <dependencies>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>antlr</groupId>
-			<artifactId>antlr</artifactId>
-			<version>2.7.5</version>
-		</dependency>
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.16</version>
-		</dependency>
-		 -->
+	
 		 <distributionManagement>
-			 <repository>
+             <repository>
         <id>central</id>
         <name>df7d982d4b33-releases</name>
         <url>http://192.168.175.222:8081/artifactory/KonakartM_Maven_App</url>
     </repository>
-       </distributionManagement>
-			 <!--<snapshotRepository>
-              <id>Konakart</id>
-             <url>http://192.168.175.193:8085/repository/Konakart/</url>
-            </snapshotRepository>
-        
-       <distributionManagement>
-            <snapshotRepository>
-              <id>test2</id>
-             <url>http://192.168.175.170:8086/artifactory/test2</url>
-            </snapshotRepository>
-        </distributionManagement>
-        <distributionManagement>
-            <snapshotRepository>
-              <id>oss</id>
-             <url>http://192.168.175.170:8081/repository/Test</url>
-            </snapshotRepository>
-        </distributionManagement>-->
+      
 		
 		 <dependencies>
 		<dependency>
@@ -68,13 +34,11 @@
 			<artifactId>antlr</artifactId>
 			<version>2.7.5</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.sonarsource.scanner.maven/sonar-maven-plugin -->
-<dependency>
-    <groupId>org.sonarsource.scanner.maven</groupId>
-    <artifactId>sonar-maven-plugin</artifactId>
-    <version>3.4.1.1168</version>
-</dependency>
-
+		<dependency>
+            <groupId>org.sonarsource.scanner.maven</groupId>
+            <artifactId>sonar-maven-plugin</artifactId>
+            <version>3.5.0.1254</version>
+        </dependency>
 		<dependency>
     <groupId>org.apache.maven.plugins</groupId>
     <artifactId>maven-deploy-plugin</artifactId>
@@ -100,7 +64,6 @@
 					<target>1.7</target>
 				</configuration>
 			</plugin>
-		
 			<plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-deploy-plugin</artifactId>
