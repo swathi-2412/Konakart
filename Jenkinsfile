@@ -53,7 +53,7 @@ pipeline{
 	    stage ('Deploy_To_Tomcat')
 	    {
 		    steps{
-	             sh '''cp -R "/var/lib/jenkins/workspace/konakart.war" "/opt/tomcat/webapps"
+	             sh '''cp -f "/var/lib/jenkins/workspace/konakart.war" "/opt/tomcat/webapps"
            '''
 	        
 		    }}
